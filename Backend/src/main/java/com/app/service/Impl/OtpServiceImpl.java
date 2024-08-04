@@ -30,8 +30,14 @@ public class OtpServiceImpl implements OtpService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Otp createOtp(Otp otp) {		
 		return otpRepository.save(otp);
+=======
+	public Otp createOtp(Otp otp) {
+		// TODO Auto-generated method stub
+		return null;
+>>>>>>> 2922e6c5dfbf606ffd3bff99206e4b321894f685
 	}
 
 }
