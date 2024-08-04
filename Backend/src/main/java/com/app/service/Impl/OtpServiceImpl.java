@@ -1,5 +1,7 @@
 package com.app.service.Impl;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import com.app.service.OtpService;
 @Transactional
 public class OtpServiceImpl implements OtpService {
 	
+	private static final int OTP_LENGTH = 6;
 	@Autowired
 	private OtpRepository otpRepository;
 	@Autowired
@@ -30,17 +33,14 @@ public class OtpServiceImpl implements OtpService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public Otp createOtp(Otp otp) {
-		return null;
-=======
-
-	public Otp createOtp(Otp otp) {		
+		Random random  = new Random();
+		StringBuilder otpcode = new StringBuilder();
+		for(int i=0;i<OTP_LENGTH;i++) {
+			otpcode.append(random.nextInt(10));
+		}
+		otp.setOtp_code(otpcode.toString());		
 		return otpRepository.save(otp);
-
-	
-
->>>>>>> 7091b58ca9ff94985de081a06f7473b1b656f116
 	}
 
 }
