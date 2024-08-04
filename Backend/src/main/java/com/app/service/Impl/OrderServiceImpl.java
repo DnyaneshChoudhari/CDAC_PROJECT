@@ -1,14 +1,15 @@
 package com.app.service.Impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.custom_exception.CustomException;
 import com.app.entities.Customer;
 import com.app.entities.Order;
+import com.app.entities.OrderStatus;
 import com.app.repository.CustomerRepository;
 import com.app.repository.OrderRepository;
 import com.app.service.OrderService;
@@ -30,8 +31,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> getAllOrdersByStatus(String status) {
-		
-		return null;
+		OrderStatus orderStatus = OrderStatus.valueOf(status);
+		return orderRepository.findAllByStatus(orderStatus);
 	}
 
 	@Override
@@ -45,21 +46,23 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order createOrder(Order Order) {
-		// TODO Auto-generated method stub
-		return null;
+	public Order createOrder(Order order) {				
+		return orderRepository.save(order);
 	}
 
 	@Override
-	public Order updateOrder(Order Order) {
-		// TODO Auto-generated method stub
-		return null;
+	public Order updateOrder(Order updatedOrder) {
+		return orderRepository.save(updatedOrder);
 	}
 
 	@Override
 	public String deleteOrder(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(orderRepository.existsById(id)) {
+		orderRepository.deleteById(id);
+		return "order deleted";
+		}
+		throw new CustomException("order not deleted");
+		
 	}
 
 }
