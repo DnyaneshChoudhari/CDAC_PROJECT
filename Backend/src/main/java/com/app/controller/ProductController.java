@@ -18,7 +18,7 @@ import com.app.service.ProductService;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
 	@Autowired

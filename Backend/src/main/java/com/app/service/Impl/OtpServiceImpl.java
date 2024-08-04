@@ -33,6 +33,7 @@ public class OtpServiceImpl implements OtpService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Otp createOtp(Otp otp) {
 		Random random  = new Random();
 		StringBuilder otpcode = new StringBuilder();
@@ -40,6 +41,10 @@ public class OtpServiceImpl implements OtpService {
 			otpcode.append(random.nextInt(10));
 		}
 		otp.setOtp_code(otpcode.toString());		
+=======
+
+	public Otp createOtp(Otp otp) {		
+>>>>>>> 1a79d9a9e16d117cf3c46a4bab12a2299cce1a2d
 		return otpRepository.save(otp);
 	}
 
