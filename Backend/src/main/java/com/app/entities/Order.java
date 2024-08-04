@@ -2,6 +2,8 @@ package com.app.entities;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
     private Customer customer;
+	@CreationTimestamp
     private LocalDate orderDate;
     private OrderStatus status;
 }

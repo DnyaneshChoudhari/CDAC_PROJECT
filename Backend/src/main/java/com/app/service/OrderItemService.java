@@ -8,7 +8,7 @@ import com.app.entities.Order_Item;
 public interface OrderItemService {
 	 List<Order_Item> getAllOrderItemsByOrder(Long oid);
 	 
-	 Optional<Order_Item> getOrderItemById(Long id);
+	 Order_Item getOrderItemById(Long id);
 	 
 	 Order_Item createOrderItem(Order_Item Order_Item);
 	 	

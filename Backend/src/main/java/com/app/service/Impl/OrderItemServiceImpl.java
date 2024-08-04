@@ -1,11 +1,15 @@
 package com.app.service.Impl;
 
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.entities.Order_Item;
 import com.app.service.OrderItemService;
 
+@Service
+@Transactional
 public class OrderItemServiceImpl implements OrderItemService {
 
 	@Override
@@ -15,9 +19,9 @@ public class OrderItemServiceImpl implements OrderItemService {
 	}
 
 	@Override
-	public Optional<Order_Item> getOrderItemById(Long id) {
+	public Order_Item getOrderItemById(Long id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return null;
 	}
 
 	@Override
