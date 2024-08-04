@@ -1,12 +1,6 @@
 package com.app.service.Impl;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
->>>>>>> 1a79d9a9e16d117cf3c46a4bab12a2299cce1a2d
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,12 +30,9 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 	@Override
 	public Order_Item getOrderItemById(Long id) {
-<<<<<<< HEAD
+
 		return itemRepository.findById(id).orElseThrow();
-=======
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 1a79d9a9e16d117cf3c46a4bab12a2299cce1a2d
+
 	}
 
 	@Override
