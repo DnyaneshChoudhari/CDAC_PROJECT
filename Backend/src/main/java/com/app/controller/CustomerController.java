@@ -36,9 +36,9 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/{customerId}")
-	public ResponseEntity<?> customerById(@PathVariable Long id){
+	public ResponseEntity<?> customerById(@PathVariable Long customerId){
 		try {
-			Customer customerById = customerService.getCustomerById(id);
+			Customer customerById = customerService.getCustomerById(customerId);
 			return ResponseEntity.status(HttpStatus.OK).body(customerById);
 		}catch(RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -76,9 +76,9 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping("/{customerId}")
-	public ResponseEntity<?> removeCustomer(@PathVariable Long id){
+	public ResponseEntity<?> removeCustomer(@PathVariable Long customerId){
 		try {
-			String deleteCustomer = customerService.deleteCustomer(id);
+			String deleteCustomer = customerService.deleteCustomer(customerId);
 			return ResponseEntity.status(HttpStatus.OK).body(deleteCustomer);
 		}catch(RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
