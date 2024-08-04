@@ -8,9 +8,9 @@ import com.app.entities.Customer;
 public interface CustomerService {
  List<Customer> getAllCustomers();
  
- Optional<Customer> getCustomerById(Long id);
+ Customer getCustomerById(Long id);
  
- Optional<Customer> getCustomerByEmail(String email);
+ Customer getCustomerByEmail(String email);
  
  Customer addNewCustomer(Customer customer);
  

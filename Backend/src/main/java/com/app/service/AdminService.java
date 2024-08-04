@@ -8,5 +8,5 @@ import com.app.entities.Admin;
 
 public interface AdminService {
 
-	 Optional<Admin> getAdminByEmail(String email);
+	 Admin getAdminByEmail(String email);
 }

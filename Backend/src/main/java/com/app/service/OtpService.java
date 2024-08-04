@@ -6,9 +6,11 @@ import com.app.entities.Order;
 import com.app.entities.Otp;
 
 public interface OtpService {
- Optional<Otp> getOtpById(Long id);
- 
- Optional<Otp> getOtpByOrderId(Long oid);
-	 
-	 Order createOtp(Otp otp);
+	Optional<Otp> getOtpById(Long id);
+
+	Optional<Otp> getOtpByOrderId(Long oid);
+
+	Otp createOtp(Otp otp);
 }
+
+

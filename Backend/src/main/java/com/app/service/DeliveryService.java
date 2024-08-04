@@ -9,13 +9,13 @@ public interface DeliveryService {
 
 	 List<Delivery> getAllDeliveries();
 	 
-	 Optional<Delivery> getDeliveryById(Long id);
+	 Delivery getDeliveryById(Long id);
 	 
-	 Optional<Delivery> getDeliveryByOrderId(Long oid);
+	 Delivery getDeliveryByOrderId(Long oid);
 	 
-	 Delivery createDelivery(Delivery Delivery);
+	 Delivery createDelivery(Delivery delivery);
 	 
-	 Delivery updateDelivery(Delivery Delivery);
+	 Delivery updateDelivery(Delivery delivery);
 	 
 	 String deleteDelivery(Long id);
 }

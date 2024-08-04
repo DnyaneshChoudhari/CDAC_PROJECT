@@ -21,7 +21,7 @@ public class OtpServiceImpl implements OtpService {
 	}
 
 	@Override
-	public Order createOtp(Otp otp) {
+	public Otp createOtp(Otp otp) {
 		// TODO Auto-generated method stub
 		return null;
 	}
