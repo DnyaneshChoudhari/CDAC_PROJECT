@@ -1,29 +1,37 @@
 package com.app.service.Impl;
 
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.entities.Order;
 import com.app.entities.Otp;
+import com.app.repository.OrderRepository;
+import com.app.repository.OtpRepository;
 import com.app.service.OtpService;
-
+@Service
+@Transactional
 public class OtpServiceImpl implements OtpService {
+	
+	@Autowired
+	private OtpRepository otpRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
-	public Optional<Otp> getOtpById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public Otp getOtpById(Long id) {
+		return otpRepository.findById(id).orElseThrow();
 	}
 
 	@Override
-	public Optional<Otp> getOtpByOrderId(Long oid) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public Otp getOtpByOrderId(Long oid) {
+		Order order = orderRepository.findById(oid).orElseThrow();
+		return otpRepository.findByOrder(order).orElseThrow();
 	}
 
 	@Override
-	public Order createOtp(Otp otp) {
-		// TODO Auto-generated method stub
-		return null;
+	public Otp createOtp(Otp otp) {		
+		return otpRepository.save(otp);
 	}
 
 }
