@@ -30,8 +30,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product updateProduct(Product product) {
+	public Product updateProduct(Long id,Product product) {
+		if(productRepository.existsById(id)) {
 		return productRepository.save(product);
+		}
+		throw new CustomException("invalid product");
 	}
 
 	@Override

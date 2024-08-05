@@ -42,8 +42,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer) {
-		return customerRepository.save(customer);
+	public Customer updateCustomer(Long cid,Customer customer) {
+		if(customerRepository.existsById(cid)) {
+			return customerRepository.save(customer);
+		}
+		throw new CustomException("invalid customer");
+		
 	}
 
 	@Override

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.entities.Customer;
 import com.app.service.CustomerService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -35,7 +35,7 @@ public class CustomerController {
 		}	
 	}
 	
-	@GetMapping("/{customerId}")
+	@GetMapping("/byId/{customerId}")
 	public ResponseEntity<?> customerById(@PathVariable Long customerId){
 		try {
 			Customer customerById = customerService.getCustomerById(customerId);
@@ -45,7 +45,7 @@ public class CustomerController {
 		}	
 	}
 	
-	@GetMapping("/{email}")
+	@GetMapping("/byEmail/{email}")
 	public ResponseEntity<?> customerByEmail(@PathVariable String email){
 		try {
 			Customer customerByEmail = customerService.getCustomerByEmail(email);
@@ -65,10 +65,10 @@ public class CustomerController {
 		}	
 	}
 	
-	@PutMapping
-	public ResponseEntity<?> editCustomer(@RequestBody Customer customer){
+	@PutMapping("/{cid}")
+	public ResponseEntity<?> editCustomer(@PathVariable Long cid, @RequestBody Customer customer){
 		try {
-			Customer updateCustomer = customerService.updateCustomer(customer);
+			Customer updateCustomer = customerService.updateCustomer(cid,customer);
 			return ResponseEntity.status(HttpStatus.OK).body(updateCustomer);
 		}catch(RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
