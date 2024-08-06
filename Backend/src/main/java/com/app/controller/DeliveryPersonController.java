@@ -56,9 +56,9 @@ public class DeliveryPersonController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> editDeliveryPerson(@RequestBody Delivery_Person deliveryPerson ){
+	public ResponseEntity<?> editDeliveryPerson(@PathVariable Long did, @RequestBody Delivery_Person deliveryPerson ){
 		try {
-			Delivery_Person editDeliveryperson = deliveryPersonService.updateDeliveryperson(deliveryPerson);
+			Delivery_Person editDeliveryperson = deliveryPersonService.updateDeliveryperson(did,deliveryPerson);
 			return ResponseEntity.status(HttpStatus.OK).body(editDeliveryperson);
 		}catch(RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

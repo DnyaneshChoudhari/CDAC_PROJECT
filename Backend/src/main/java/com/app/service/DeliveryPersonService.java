@@ -13,7 +13,7 @@ public interface DeliveryPersonService {
 
 	Delivery_Person addNewDeliveryperson(Delivery_Person delivery_Person);
 
-	Delivery_Person updateDeliveryperson(Delivery_Person delivery_Person);
+	Delivery_Person updateDeliveryperson(Long did,Delivery_Person delivery_Person);
 
 	String deleteDeliveryperson(Long id);
 

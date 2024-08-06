@@ -36,8 +36,11 @@ public class DeliveryPersonServiceImpl implements DeliveryPersonService {
 	}
 
 	@Override
-	public Delivery_Person updateDeliveryperson(Delivery_Person delivery_Person) {
+	public Delivery_Person updateDeliveryperson(Long did,Delivery_Person delivery_Person) {
+		if(deliveryPersonRepository.existsById(did)) {
 		return deliveryPersonRepository.save(delivery_Person);
+		}
+		throw new CustomException("Invalid Delivery Person Id");
 	}
 
 	@Override
