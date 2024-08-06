@@ -79,8 +79,11 @@ public class OrderServiceImpl implements OrderService {
 	
 
 	@Override
-	public Order updateOrder(Order updatedOrder) {
-		return orderRepository.save(updatedOrder);
+	public Order updateOrder(Long oid,Order updatedOrder) {
+		if(orderRepository.existsById(oid)) {
+			return orderRepository.save(updatedOrder);
+		}
+		throw new CustomException("order not found");
 	}
 
 	@Override

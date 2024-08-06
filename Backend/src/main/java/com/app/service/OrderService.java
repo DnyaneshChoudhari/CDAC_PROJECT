@@ -16,7 +16,7 @@ public interface OrderService {
 	 
 	 Order createOrder(Order Order);
 	 
-	 Order updateOrder(Order Order);
+	 Order updateOrder(Long oid,Order Order);
 	 
 	 String deleteOrder(Long id);
 }
