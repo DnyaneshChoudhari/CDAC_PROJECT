@@ -6,7 +6,7 @@ import com.app.entities.Order;
 
 public interface OrderService {
 
-	 List<Order> getAllOrdersByCustomer(Long cid);
+	 List<Order> getAllOrdersByCustomer(Long  cid);
 	 
 	 List<Order> getAllOrdersByStatus(String status);
 	 

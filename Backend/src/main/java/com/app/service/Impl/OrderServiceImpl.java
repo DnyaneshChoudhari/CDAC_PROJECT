@@ -15,7 +15,6 @@ import com.app.entities.Product;
 import com.app.repository.CustomerRepository;
 import com.app.repository.OrderRepository;
 import com.app.repository.ProductRepository;
-import com.app.service.OrderItemService;
 import com.app.service.OrderService;
 @Service
 @Transactional
@@ -30,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired
+//	@Autowired
 	//private OrderItemService itemService;
 	
 	@Override
