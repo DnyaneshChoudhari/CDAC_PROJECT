@@ -30,20 +30,16 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 	@Override
 	public Order_Item getOrderItemById(Long id) {
-
 		return itemRepository.findById(id).orElseThrow();
-
 	}
 
 	@Override
 	public Order_Item createOrderItem(Order_Item order_Item) {
-
 		return itemRepository.save(order_Item);
 	}
 
 	@Override
 	public Order_Item updateOrderItem(Order_Item updatedOrder_Item) {
-
 		return itemRepository.save(updatedOrder_Item);
 	}
 

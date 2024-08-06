@@ -10,8 +10,12 @@ import com.app.custom_exception.CustomException;
 import com.app.entities.Customer;
 import com.app.entities.Order;
 import com.app.entities.OrderStatus;
+import com.app.entities.Order_Item;
+import com.app.entities.Product;
 import com.app.repository.CustomerRepository;
 import com.app.repository.OrderRepository;
+import com.app.repository.ProductRepository;
+import com.app.service.OrderItemService;
 import com.app.service.OrderService;
 @Service
 @Transactional
@@ -22,6 +26,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	//private OrderItemService itemService;
 	
 	@Override
 	public List<Order> getAllOrdersByCustomer(Long cid) {
@@ -46,9 +56,27 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order createOrder(Order order) {				
-		return orderRepository.save(order);
-	}
+	public Order createOrder(Order order) {	
+		
+		if (order.getCustomer() != null && order.getCustomer().getId() != null) {
+            Customer customer = customerRepository.findById(order.getCustomer().getId()).orElse(null);
+            order.setCustomer(customer);
+        }
+
+        // Ensure products exist and set in order items
+        for (Order_Item item : order.getItems()) {
+            if (item.getProduct() != null && item.getProduct().getId() != null) {
+                Product product = productRepository.findById(item.getProduct().getId()).orElse(null);
+                item.setProduct(product);
+            }
+            item.setOrder(order);
+            //itemService.createOrderItem(item);            
+        }
+
+        return orderRepository.save(order);
+    }
+		
+	
 
 	@Override
 	public Order updateOrder(Order updatedOrder) {
