@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.CustomException;
+import com.app.dto.OrderRequest;
+import com.app.dto.ProductQuantity;
 import com.app.entities.Customer;
 import com.app.entities.Order;
 import com.app.entities.OrderStatus;
@@ -15,6 +17,7 @@ import com.app.entities.Product;
 import com.app.repository.CustomerRepository;
 import com.app.repository.OrderRepository;
 import com.app.repository.ProductRepository;
+import com.app.service.BillService;
 import com.app.service.OrderService;
 
 @Service
@@ -29,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private BillService billService;
 
 	@Override
 	public List<Order> getAllOrdersByCustomer(Long cid) {
@@ -67,7 +73,6 @@ public class OrderServiceImpl implements OrderService {
 				item.setProduct(product);
 			}
 			item.setOrder(order);
-			// itemService.createOrderItem(item);
 		}
 
 		return orderRepository.save(order);
@@ -89,6 +94,38 @@ public class OrderServiceImpl implements OrderService {
 		}
 		throw new CustomException("order not deleted");
 
+	}
+
+	// creating orders from the dto
+	@Override
+	public Order createOrder(OrderRequest OrderRequest) {
+		// Validate customer
+		Customer customer = customerRepository.findById(OrderRequest.getCustomerId())
+				.orElseThrow(() -> new RuntimeException("Customer not found"));
+
+		// Create new order
+		Order order = new Order();
+		order.setCustomer(customer);
+
+		// Add products to the order
+		for (ProductQuantity pq : OrderRequest.getProducts()) {
+			Product product = productRepository.findById(pq.getProductId())
+					.orElseThrow(() -> new RuntimeException("Product not found"));
+
+			Order_Item orderItem = new Order_Item();
+			orderItem.setProduct(product);
+			orderItem.setQuantity(pq.getQuantity());
+			orderItem.setSubtotal(product.getPrice() * pq.getQuantity());
+			orderItem.setOrder(order);
+			order.addOrderItem(orderItem);
+		}
+
+		// Save order
+		Order savedOrder = orderRepository.save(order);
+		
+		billService.generateBill(savedOrder);
+		
+		return savedOrder;
 	}
 
 }
