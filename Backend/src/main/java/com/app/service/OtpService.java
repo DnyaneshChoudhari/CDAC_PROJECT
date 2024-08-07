@@ -1,5 +1,6 @@
 package com.app.service;
 
+import com.app.entities.Order;
 import com.app.entities.Otp;
 
 public interface OtpService {
@@ -8,5 +9,7 @@ public interface OtpService {
 
 	Otp getOtpByOrderId(Long oid);
 
-	Otp createOtp(Otp otp);
+	Otp createOtp(Order order);
+	
+	Boolean validateOtp(Long OrderId, String otpCode);
 }

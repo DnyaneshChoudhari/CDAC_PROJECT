@@ -35,15 +35,25 @@ public class OtpServiceImpl implements OtpService {
 
 	@Override
 
-	public Otp createOtp(Otp otp) {
+	public Otp createOtp(Order order) {
 		Random random = new Random();
+		Otp otp = new Otp();
 		StringBuilder otpcode = new StringBuilder();
 		for (int i = 0; i < OTP_LENGTH; i++) {
 			otpcode.append(random.nextInt(10));
 		}
 		otp.setOtp_code(otpcode.toString());
+		otp.setOrder(order);
 
 		return otpRepository.save(otp);
+	}
+
+	@Override
+	public Boolean validateOtp(Long OrderId, String otpCode) {
+		Otp otpByOrderId = getOtpByOrderId(OrderId);
+		if (otpByOrderId != null && otpByOrderId.getOtp_code().equals(otpCode))
+			return true;
+		return false;
 	}
 
 }
