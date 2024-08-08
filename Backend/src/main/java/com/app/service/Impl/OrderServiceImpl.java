@@ -123,6 +123,7 @@ public class OrderServiceImpl implements OrderService {
 		// Save order
 		Order savedOrder = orderRepository.save(order);
 		
+		// Bill Generation for order
 		billService.generateBill(savedOrder);
 		
 		return savedOrder;
