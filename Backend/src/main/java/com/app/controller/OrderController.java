@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.OrderRequest;
 import com.app.entities.Order;
 import com.app.service.OrderService;
 
@@ -65,7 +66,7 @@ public class OrderController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> addOrder(@RequestBody Order order ){
+	public ResponseEntity<?> addOrder(@RequestBody OrderRequest order ){
 		try {
 			Order order2 = orderService.createOrder(order);
 			return ResponseEntity.status(HttpStatus.OK).body(order2);

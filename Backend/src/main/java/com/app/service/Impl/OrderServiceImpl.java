@@ -106,6 +106,7 @@ public class OrderServiceImpl implements OrderService {
 		// Create new order
 		Order order = new Order();
 		order.setCustomer(customer);
+		order.setStatus(OrderStatus.PENDING);
 
 		// Add products to the order
 		for (ProductQuantity pq : OrderRequest.getProducts()) {

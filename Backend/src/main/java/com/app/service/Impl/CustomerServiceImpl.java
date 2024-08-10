@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override
 	public List<Customer> getAllCustomers() {
@@ -38,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer addNewCustomer(Customer customer) {
+		customer.setPassword(encoder.encode(customer.getPassword()));
 		return customerRepository.save(customer);
 	}
 
