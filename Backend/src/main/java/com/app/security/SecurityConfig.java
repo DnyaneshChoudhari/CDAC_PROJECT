@@ -39,8 +39,10 @@ public class SecurityConfig {
 		http.csrf(csrf -> csrf.disable()
 		// Disable CSRF entirely
 		).authorizeHttpRequests(
-				authorize -> authorize.requestMatchers("/products/view", "/v*/api-doc*/**", "/swagger-ui/**")
-						.permitAll().requestMatchers("/authenticate", "/register", "/admin").permitAll()
+				authorize -> authorize.requestMatchers("/products/view", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+						.requestMatchers("/authenticate", "/register", "/admin").permitAll()
+						 .requestMatchers("/api/deliveries/**").hasAnyRole("ADMIN", "DELIVERY")
+				            // Allow access to delivery-related APIs only to ADMIN and DELIVERY_PERSON roles
 						// Allow public access to these endpoints
 
 						.anyRequest().authenticated() // All other endpoints require authentication
