@@ -10,8 +10,8 @@ import {
   InputLabel,
   Select,
 } from '@mui/material';
-import { Colors } from '../styles/theme/theme';
-import { useDispatch, useSelector } from 'react-redux';
+// import { Colors } from '../styles/theme/theme';
+// import { useDispatch, useSelector } from 'react-redux';
 import {
   filterProducts,
   sortProducts,
@@ -22,39 +22,39 @@ import { PageContainer } from '../styles/page/containers';
 import { useState, useEffect } from 'react';
 
 const ProductsPage = () => {
-  const filterButtons = [
-    'All',
-    "Men's clothing",
-    "Women's clothing",
-    'Jewelery',
-    'Electronics',
-  ];
+  // const filterButtons = [
+  //   'All',
+  //   "Men's clothing",
+  //   "Women's clothing",
+  //   'Jewelery',
+  //   'Electronics',
+  // ];
 
-  const sortingOptions = [
-    'Top Rated',
-    'Price (High to Low)',
-    'Price (Low to High)',
-  ];
+  // const sortingOptions = [
+  //   'Top Rated',
+  //   'Price (High to Low)',
+  //   'Price (Low to High)',
+  // ];
 
-  const [sortingValue, setSortingValue] = useState('Top Rated');
+  // const [sortingValue, setSortingValue] = useState('Top Rated');
 
-  const dispatch = useDispatch();
-  const { filteredProducts, sortingOption } = useSelector(
-    (state) => state.products
-  );
+  // const dispatch = useDispatch();
+  // const { filteredProducts, sortingOption } = useSelector(
+  //   (state) => state.products
+  // );
 
-  const handleChange = (event) => {
-    setSortingValue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setSortingValue(event.target.value);
+  // };
 
-  useEffect(() => {
-    dispatch(setSortingOption(sortingValue));
-    dispatch(sortProducts());
-  }, [filteredProducts, sortingOption, sortingValue]);
+  // useEffect(() => {
+  //   dispatch(setSortingOption(sortingValue));
+  //   dispatch(sortProducts());
+  // }, [filteredProducts, sortingOption, sortingValue]);
 
-  useEffect(() => {
-    dispatch(setSortingOption('Top Rated'));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setSortingOption('Top Rated'));
+  // }, []);
 
   return (
     <PageContainer>
@@ -70,7 +70,7 @@ const ProductsPage = () => {
           flexDirection: { md: 'row', xs: 'column' },
         }}
       >
-        <ButtonGroup
+        {/* <ButtonGroup
           sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
           color="primary"
           aria-label="medium secondary button group"
@@ -86,8 +86,8 @@ const ProductsPage = () => {
               {button}
             </Button>
           ))}
-        </ButtonGroup>
-        <FormControl
+        </ButtonGroup> */}
+        {/* <FormControl
           sx={{ width: '13rem', margin: { xs: '.5rem' } }}
           size="small"
         >
@@ -101,7 +101,7 @@ const ProductsPage = () => {
               <MenuItem value={item}>{item}</MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         {/* <List component="nav" aria-label="Device settings">
           <ListItem

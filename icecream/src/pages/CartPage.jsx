@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import {
   Card,
   Container,
@@ -10,18 +10,18 @@ import {
   CardActions,
   Button,
   Box,
-} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import {
   addProduct,
   deleteProduct,
   deleteAllProduct,
-} from "../features/cart/CartSlice";
-import { AmountButtons } from "../styles/buttons/buttons";
-import { PageContainer } from "../styles/page/containers";
-import { Colors } from "../styles/theme/theme";
+} from '../features/cart/CartSlice';
+import { AmountButtons } from '../styles/buttons/buttons';
+import { PageContainer } from '../styles/page/containers';
+import { Colors } from '../styles/theme/theme';
 
 const CartPage = () => {
   const { cartProducts } = useSelector((state) => state.cart);
@@ -43,7 +43,7 @@ const CartPage = () => {
         </Typography>
       ) : (
         <>
-          <Typography variant="h4" sx={{ textAlign: "center", mb: "3rem" }}>
+          <Typography variant="h4" sx={{ textAlign: 'center', mb: '3rem' }}>
             MY CART
           </Typography>
           <Box>
@@ -51,25 +51,25 @@ const CartPage = () => {
               <Card
                 key={item.id}
                 sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mb: "2rem",
-                  padding: "1rem",
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  mb: '2rem',
+                  padding: '1rem',
                 }}
               >
                 <CardMedia
-                  sx={{ height: "20rem", width: "40vw" }}
+                  sx={{ height: '20rem', width: '40vw' }}
                   image={item.image}
                 />
-                <CardContent sx={{ width: { xs: "90vw", md: "60vw" } }}>
+                <CardContent sx={{ width: { xs: '90vw', md: '60vw' } }}>
                   <Typography variant="h5">{item.title}</Typography>
                   <Typography
                     variant="subtitle1"
-                    sx={{ mt: "1rem", fontWeight: 600, fontSize: "1.5rem" }}
+                    sx={{ mt: '1rem', fontWeight: 600, fontSize: '1.5rem' }}
                   >
-                    ${item.price}
+                    Rs. {item.price}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -87,21 +87,24 @@ const CartPage = () => {
                   </AmountButtons>
 
                   <Button
-                    sx={{ marginLeft: "1rem" }}
+                    sx={{ marginLeft: '1rem' }}
                     onClick={() => dispatch(deleteAllProduct(item))}
                     aria-label="delete all units of this product"
                   >
-                    <DeleteIcon color="primary" sx={{ fontSize: "2rem" }} />
+                    <DeleteIcon color="primary" sx={{ fontSize: '2rem' }} />
                   </Button>
                 </CardActions>
               </Card>
             ))}
             <Typography
               variant="h5"
-              sx={{ fontWeight: "600", marginTop: "4rem" }}
+              sx={{ fontWeight: '600', marginTop: '4rem' }}
             >
-              TOTAL: ${total}
+              TOTAL: Rs. {total}
             </Typography>
+            <Button variant="contained" sx={{ marginLeft: '1rem' }}>
+              Proceed to checkout
+            </Button>
           </Box>
         </>
       )}

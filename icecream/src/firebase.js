@@ -2,17 +2,17 @@
 // import { GoogleAuthProvider } from "firebase/auth";
 
 // const firebaseConfig = {
-//   apiKey: "AIzaSyCjPzRk2qDi73WvVzX-UUB4Y3Hmmr7x2XM",
+//     apiKey: "AIzaSyCjPzRk2qDi73WvVzX-UUB4Y3Hmmr7x2XM",
 
-//   authDomain: "e-commerce-d6bae.firebaseapp.com",
+//     authDomain: "e-commerce-d6bae.firebaseapp.com",
 
-//   projectId: "e-commerce-d6bae",
+//     projectId: "e-commerce-d6bae",
 
-//   storageBucket: "e-commerce-d6bae.appspot.com",
+//     storageBucket: "e-commerce-d6bae.appspot.com",
 
-//   messagingSenderId: 37590906133,
+//     messagingSenderId: 37590906133,
 
-//   appId: "1:37590906133:web:a79aa6f49e1a5484d0251c",
+//     appId: "1:37590906133:web:a79aa6f49e1a5484d0251c",
 // };
 
 // const app = initializeApp(firebaseConfig);

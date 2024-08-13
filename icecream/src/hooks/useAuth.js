@@ -1,13 +1,11 @@
-import { useSelector } from "react-redux";
+// src/hooks/useAuth.js
+import { useSelector } from 'react-redux';
 
 export const useAuth = () => {
-  const { email, token, id, name } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.user);
 
   return {
-    isAuth: !!email,
-    email,
-    token,
-    id,
-    name,
+    isAuth: !!userInfo,  // True if userInfo exists
+    email: userInfo?.email,  // User email
   };
 };

@@ -14,6 +14,7 @@ import {
   Button,
   IconButton,
   Snackbar,
+  Rating,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -97,18 +98,19 @@ const ProductsItemPage = () => {
                 {product.category}
               </Typography>
               <Typography variant="h5" sx={{ mb: '1rem' }}>
-                {product.title}
+                {product.name}
               </Typography>
               <Typography variant="h6" sx={{ mb: '1rem' }}>
                 {/* Rating {product.rating && product.rating.rate} */}
-                Rating {product.rating}
+                <Rating name="read-only" value={product.rating} readOnly />
+                {/* Rating {product.rating} */}
               </Typography>
               <Typography variant="body1" sx={{ mb: '2rem' }}>
                 {/* {product.description.substring(0, 300)} */}
                 {product.description}
               </Typography>
               <Typography variant="h4" sx={{ mb: '1.5rem' }}>
-                ${product.price}
+                Rs. {product.price}
               </Typography>
 
               <Box

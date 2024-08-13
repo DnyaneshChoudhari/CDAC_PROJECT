@@ -62,7 +62,7 @@ const Products = () => {
                           fontWeight: '600',
                         }}
                       >
-                        $ {product.price}
+                        Rs. {product.price}
                       </Typography>
                     </CardContent>
                   </Link>
