@@ -6,22 +6,13 @@ import { removeUser } from "../features/user/UserSlice";
 import Orders from "../components/Orders";
 import { MyButton } from "../styles/buttons/buttons";
 import { PageContainer } from "../styles/page/containers";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { Output } from "@mui/icons-material";
 
 const AccountPage = () => {
   const dispatch = useDispatch();
   const { isAuth, email } = useAuth();
-
-  const handleSignOut = () => {
-    dispatch(removeUser());
-  };
-
-  if (!isAuth) {
-    return <Navigate to="/login" />;
-  }
-
-  return (
+  return isAuth ? (
     <PageContainer>
       <Typography variant="h4" mb="1rem">
         Welcome,
@@ -32,13 +23,15 @@ const AccountPage = () => {
       <Orders />
       <MyButton
         variant="contained"
-        onClick={handleSignOut}
+        onClick={() => dispatch(removeUser())}
         endIcon={<Output />}
         aria-label="Sign out"
       >
         Sign out
       </MyButton>
     </PageContainer>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 

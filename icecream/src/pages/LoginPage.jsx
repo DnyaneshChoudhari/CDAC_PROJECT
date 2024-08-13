@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Typography, Paper, Divider } from "@mui/material";
-import Login from "../components/LoginForm";
+import Login from "../components/Login";
 import { PageContainer } from "../styles/page/containers";
 import { Colors } from "../styles/theme/theme";
-import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => {
   return (
@@ -16,7 +15,7 @@ const LoginPage = () => {
         <Typography variant="h4" mb="1rem">
           Login
         </Typography>
-        <LoginForm />
+        <Login />
         <Divider textAlign="center" />
         <Typography variant="subtitle1" mt="2rem">
           Don't have an account?{" "}

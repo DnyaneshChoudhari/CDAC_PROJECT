@@ -75,7 +75,7 @@ const Footer = () => {
           textAlign: "center",
         }}
       >
-        © 2023 All Rights Reserved Terms of Use and Private Policy
+        © 2024 All Rights Reserved Terms of Use and Private Policy
       </Box>
     </Box>
   );

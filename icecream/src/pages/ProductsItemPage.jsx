@@ -25,7 +25,7 @@ import { Colors } from '../styles/theme/theme';
 
 const ProductsItemPage = () => {
   const dispatch = useDispatch();
-  // const { isAuth } = useAuth();
+  const { isAuth } = useAuth();
   const { error, loading, product } = useSelector((state) => state.products);
   const { cartProducts } = useSelector((state) => state.cart);
   const productQuantity = cartProducts?.find((item) => item.id === product.id);
@@ -47,11 +47,11 @@ const ProductsItemPage = () => {
 
   const action = (
     <>
-      {/* <Link to="/login">
+      <Link to="/login">
         <Button color="primary" size="small" onClick={handleClose}>
           log in
         </Button>
-      </Link> */}
+      </Link>
       <IconButton
         size="small"
         aria-label="close"
@@ -136,7 +136,9 @@ const ProductsItemPage = () => {
                 ) : (
                   <Button
                     variant="outlined"
-                    onClick={() => dispatch(addProduct(product))}
+                    onClick={() =>
+                      isAuth ? dispatch(addProduct(product)) : handleClick()
+                    }
                     aria-label="Buy"
                   >
                     Buy
@@ -151,7 +153,7 @@ const ProductsItemPage = () => {
               </Box>
             </Box>
           </Box>
-          {/* 
+
           <Snackbar
             open={open}
             autoHideDuration={6000}
@@ -159,7 +161,7 @@ const ProductsItemPage = () => {
             message="To add an item to your cart, you need to"
             action={action}
             anchorOriginBottomLeft
-          /> */}
+          />
         </PageContainer>
       )}
     </>

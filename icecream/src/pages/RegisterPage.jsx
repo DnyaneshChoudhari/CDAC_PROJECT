@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Register from "../components/RegisterForm";
+import Register from "../components/Register";
 import { Container, Typography, Paper, Divider } from "@mui/material";
 import { PageContainer } from "../styles/page/containers";
 
