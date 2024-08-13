@@ -39,8 +39,9 @@ public class AuthController {
 
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
 		final String jwt = jwtUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok().body(new AuthResponse(jwt, userDetails));
+		String authority = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
+//		System.out.println(authority);
+		return ResponseEntity.ok().body(new AuthResponse(jwt, userDetails,authority));
 	}
 
 }

@@ -10,4 +10,5 @@ import lombok.Data;
 public class AuthResponse {
 	private String token;
 	private UserDetails user;
+	private String role;
 }

@@ -41,7 +41,7 @@ public class SecurityConfig {
 		).authorizeHttpRequests(
 				authorize -> authorize.requestMatchers("/api/products", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
 						.requestMatchers("/authenticate", "/register", "/admin").permitAll()
-						 .requestMatchers("/api/deliveries/**").hasAnyRole("ADMIN", "DELIVERY")
+						 .requestMatchers("/api/deliveries/**","/api/orders/**").hasAnyRole("ADMIN", "DELIVERY")
 				            // Allow access to delivery-related APIs only to ADMIN and DELIVERY_PERSON roles
 						// Allow public access to these endpoints
 
