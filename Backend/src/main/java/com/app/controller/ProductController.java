@@ -1,3 +1,4 @@
+
 package com.app.controller;
 
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.entities.Product;
 import com.app.service.ProductService;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -30,6 +32,16 @@ public class ProductController {
 		try {
 			List<Product> allProducts = productService.getAllProducts();
 			return ResponseEntity.status(HttpStatus.OK).body(allProducts);
+		}catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}	
+	}
+	
+	@GetMapping("/byId/{productId}")
+	public ResponseEntity<?> getProduct(@PathVariable Long productId){
+		try {
+			Product product = productService.getById(productId);
+			return ResponseEntity.status(HttpStatus.OK).body(product);
 		}catch(RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}	

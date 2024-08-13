@@ -25,17 +25,17 @@ public class UnifiedUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Admin admin = adminRepository.findByEmail(email).orElseThrow();
+		Admin admin = adminRepository.findByEmail(email).orElse(null);
 		if (admin != null) {
 			return admin; // Admin implements UserDetails
 		}
 
-		Customer customer = customerRepository.findByEmail(email).orElseThrow();
+		Customer customer = customerRepository.findByEmail(email).orElse(null);
 		if (customer != null) {
 			return customer; // Customer implements UserDetails
 		}
 
-		Delivery_Person deliveryPerson = deliveryPersonRepository.findByEmail(email).orElseThrow();
+		Delivery_Person deliveryPerson = deliveryPersonRepository.findByEmail(email).orElse(null);
 		if (deliveryPerson != null) {
 			return deliveryPerson; // DeliveryPerson implements UserDetails
 		}

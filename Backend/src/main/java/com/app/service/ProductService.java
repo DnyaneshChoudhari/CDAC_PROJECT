@@ -10,4 +10,5 @@ public interface ProductService {
 	List<Product> getAllProducts();
 	Product updateProduct(Long id,Product product);
 	String deleteProduct(Long pid);
+	Product getById(Long id);
 }

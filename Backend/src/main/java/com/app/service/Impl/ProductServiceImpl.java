@@ -1,6 +1,7 @@
 package com.app.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,12 @@ public class ProductServiceImpl implements ProductService {
 			return "Product Deleted";
 		}
 		throw new CustomException("Delete operation failed");
+	}
+	
+	@Override
+	public Product getById(Long id) {
+		Optional<Product> optional = productRepository.findById(id);
+		return optional.orElseThrow();
 	}
 
 }
