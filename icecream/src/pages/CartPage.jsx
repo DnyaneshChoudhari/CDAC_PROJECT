@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Card,
   Container,
@@ -22,18 +23,96 @@ import {
 import { AmountButtons } from '../styles/buttons/buttons';
 import { PageContainer } from '../styles/page/containers';
 import { Colors } from '../styles/theme/theme';
+import { useNavigate } from 'react-router';
+import { createPaymentOrder } from '../api/api';
+import { useAuth } from '../hooks/useAuth';
+
 
 const CartPage = () => {
   const { cartProducts } = useSelector((state) => state.cart);
-
+  const { email, id, role } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
+  const { token } = useAuth()
 
   useEffect(() => {
     let number = 0;
     cartProducts.map((item) => (number += item.quantity * item.price));
     setTotal(number.toFixed(2));
   }, [cartProducts]);
+
+
+  //payement handling mechanism
+  const handlePayment = async (amount) => {
+    try {
+      console.log(amount);
+      
+      // const response = await createPaymentOrder(amount, "INR");
+      const response = await axios({
+        method:"post",
+        baseURL:"http://localhost:8080/api",
+        url:"/payments/create-order",
+        params:{
+          amount: amount,
+          currency: 'INR'
+        }
+      })
+      const { data } = response;
+      console.log(response);
+
+
+
+      const options = {
+        key: 'rzp_test_hJjVKLZjSCpVAy',
+        amount: data.amount,
+        currency: data.currency,
+        name: "ScoopsNSmile",
+        description: "Test Transaction for user " + id,
+        order_id: data.id,
+        handler: async function (response) {
+          try{
+          // const paymentResponse = await axios.post('http://localhost:8080/api/payments/success', 
+          //  {
+          //   razorpayPaymentId: response.razorpay_payment_id,
+          //   razorpayOrderId: response.razorpay_order_id,
+          //   razorpaySignature: response.razorpay_signature
+          // });
+
+         const paymentResponse=await axios({
+            method:"post",
+            baseURL:"http://localhost:8080/api",
+            url:"/payments/success",
+            params:{
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature
+              }
+          })
+          alert('Payment successful');
+          // You can update the order status or navigate to another page here
+          navigate("/");
+        } catch (error) {
+          console.error('Payment success handling failed', error);
+          alert('There was an issue handling payment success. Please contact support.');
+        }
+        },
+        prefill: {
+          name: role,
+          email: email,
+          contact: "9999999999"
+        },
+        theme: {
+          color: "#3399cc"
+        }
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error('Payment failed', error);
+    }
+  };
 
   return (
     <PageContainer>
@@ -102,7 +181,7 @@ const CartPage = () => {
             >
               TOTAL: Rs. {total}
             </Typography>
-            <Button variant="contained" sx={{ marginLeft: '1rem' }}>
+            <Button variant="contained" sx={{ marginLeft: '1rem' }} onClick={() => handlePayment(total)}>
               Proceed to checkout
             </Button>
           </Box>

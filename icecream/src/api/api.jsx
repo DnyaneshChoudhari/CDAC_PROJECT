@@ -18,6 +18,7 @@ export const fetchDeliveryPersons = () =>
             'Authorization': `Bearer ${token}`
         }
     });
+
 export const createDeliveryPerson = (deliveryPerson) =>
     axios.post(`${API_BASE_URL}/delivery_person`, deliveryPerson);
 export const updateDeliveryPerson = (deliveryPerson) =>
@@ -33,5 +34,12 @@ export const fetchOrders = () => axios.get(`${API_BASE_URL}/orders`, {
         'Authorization': `Bearer ${token}`
     }
 });
+
 export const updateOrderStatus = (orderId, status) =>
     axios.put(`${API_BASE_URL}/orders/${orderId}/status`, { status });
+
+export const createPaymentOrder = (amount, currency) => axios.post(`${API_BASE_URL}/payments/create-order`,JSON.stringify({ amount:amount, currency:currency }), {
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
+})
