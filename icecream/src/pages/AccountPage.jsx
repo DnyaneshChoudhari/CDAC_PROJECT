@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useDispatch } from "react-redux";
-import { removeUser } from "../features/user/UserSlice";
+import { logoutAndClearCart} from "../features/user/UserSlice";
 import Orders from "../components/Orders";
 import { MyButton } from "../styles/buttons/buttons";
 import { PageContainer } from "../styles/page/containers";
@@ -23,7 +23,8 @@ const AccountPage = () => {
       <Orders />
       <MyButton
         variant="contained"
-        onClick={() => dispatch(removeUser())}
+        //onClick={() => dispatch(removeUser())}
+        onClick={() => dispatch(logoutAndClearCart())}
         endIcon={<Output />}
         aria-label="Sign out"
       >

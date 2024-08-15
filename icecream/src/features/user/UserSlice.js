@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { clearCart } from "../cart/CartSlice";
 
 const initialState = {
   email: "",
@@ -25,6 +26,9 @@ const userSlice = createSlice({
     },
   },
 });
-
+export const logoutAndClearCart = () => (dispatch) => {
+  dispatch(removeUser());
+  dispatch(clearCart());
+};
 export const { setUser, removeUser } = userSlice.actions;
 export default userSlice.reducer;

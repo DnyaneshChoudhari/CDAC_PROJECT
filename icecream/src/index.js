@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme/theme";
 import { PersistGate } from "redux-persist/integration/react";
-import "./firebase";
+
 
 const container = document.getElementById("root");
 const root = createRoot(container);

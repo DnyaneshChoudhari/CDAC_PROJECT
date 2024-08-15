@@ -19,12 +19,12 @@ import {
   addProduct,
   deleteProduct,
   deleteAllProduct,
+  clearCart,
 } from '../features/cart/CartSlice';
 import { AmountButtons } from '../styles/buttons/buttons';
 import { PageContainer } from '../styles/page/containers';
 import { Colors } from '../styles/theme/theme';
 import { useNavigate } from 'react-router';
-import { createPaymentOrder } from '../api/api';
 import { useAuth } from '../hooks/useAuth';
 
 
@@ -47,55 +47,70 @@ const CartPage = () => {
   const handlePayment = async (amount) => {
     try {
       console.log(amount);
-      
+
       // const response = await createPaymentOrder(amount, "INR");
       const response = await axios({
-        method:"post",
-        baseURL:"http://localhost:8080/api",
-        url:"/payments/create-order",
-        params:{
+        method: "post",
+        baseURL: "http://localhost:8080/api",
+        url: "/payments/create-order",
+        params: {
           amount: amount,
           currency: 'INR'
+        },
+        data: {
+          customerId: id,
+          products: [{ productId: 1, quantity: 5 }]
+        },
+        headers: {
+          "Content-Type": "application/json", // Set the content type if needed
+          "Authorization": `Bearer ${token}`, // Include a token if your API requires authentication
         }
       })
-      const { data } = response;
-      console.log(response);
+      const { order, orderId } = response.data;
+
+      //console.log(order);
+      const pasredOrder = JSON.parse(order);
+      const parsedId = JSON.parse(orderId);
+
+      console.log(typeof parsedId);
 
 
 
       const options = {
         key: 'rzp_test_hJjVKLZjSCpVAy',
-        amount: data.amount,
-        currency: data.currency,
+        amount: pasredOrder.amount,
+        currency: pasredOrder.currency,
         name: "ScoopsNSmile",
         description: "Test Transaction for user " + id,
-        order_id: data.id,
+        order_id: pasredOrder.id,
         handler: async function (response) {
-          try{
-          // const paymentResponse = await axios.post('http://localhost:8080/api/payments/success', 
-          //  {
-          //   razorpayPaymentId: response.razorpay_payment_id,
-          //   razorpayOrderId: response.razorpay_order_id,
-          //   razorpaySignature: response.razorpay_signature
-          // });
-
-         const paymentResponse=await axios({
-            method:"post",
-            baseURL:"http://localhost:8080/api",
-            url:"/payments/success",
-            params:{
+          try {
+            const paymentResponse = await axios({
+              method: "post",
+              baseURL: "http://localhost:8080/api",
+              url: "/payments/success",
+              params: {
                 razorpayPaymentId: response.razorpay_payment_id,
                 razorpayOrderId: response.razorpay_order_id,
-                razorpaySignature: response.razorpay_signature
+                razorpaySignature: response.razorpay_signature,
+                oid: parsedId
               }
-          })
-          alert('Payment successful');
-          // You can update the order status or navigate to another page here
-          navigate("/");
-        } catch (error) {
-          console.error('Payment success handling failed', error);
-          alert('There was an issue handling payment success. Please contact support.');
-        }
+              // data: {
+              //   parsedId
+              // },
+              // headers: {
+              //   "Content-Type": "application/json", // Set the content type if needed
+              //   "Authorization": `Bearer ${token}`, // Include a token if your API requires authentication
+              // }
+            })
+            alert('Payment successful');
+            // You can update the order status or navigate to another page here
+            dispatch(clearCart());
+            navigate("/");
+          } catch (error) {
+            console.error('Payment success handling failed', error);
+            alert('There was an issue handling payment success. Please contact support.');
+          }
         },
         prefill: {
           name: role,
