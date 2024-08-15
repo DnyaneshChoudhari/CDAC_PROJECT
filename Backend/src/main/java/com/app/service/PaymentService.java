@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,7 @@ import com.razorpay.Utils;
 @Service
 public class PaymentService {
 	
-	@Autowired
-	private OrderService service;
+
 
 	@Value("${razorpay.key_id}")
 	private String razorpayKeyId;

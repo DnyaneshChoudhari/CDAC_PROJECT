@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,7 +47,8 @@ public class Order {
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Order_Item> items = new ArrayList<>();
 
