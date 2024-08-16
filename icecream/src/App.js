@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ErrorPage from "./pages/ErrorPage";
 import DeliveryPersons from "./pages/admin/DeliveryPersons";
+import DeliveriesList from "./pages/DeliveriesList";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Header from "./components/admin/Header"
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/waiting" element={<ErrorPage />} />
+        <Route path="/delivery" element={<DeliveriesList />} />
 
         <Route
           path="/admin/*"

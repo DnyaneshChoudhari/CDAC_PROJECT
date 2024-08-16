@@ -10,8 +10,8 @@ import { setUser } from "../features/user/UserSlice";
 import { useNavigate } from "react-router-dom";
 // import { provider } from "../firebase";
 import { Button, Typography, Box } from "@mui/material";
-import { Google } from "@mui/icons-material";
-import { Colors } from "../styles/theme/theme";
+// import { Google } from "@mui/icons-material";
+// import { Colors } from "../styles/theme/theme";
 import axios from "axios";
 
 const Login = () => {
@@ -51,7 +51,7 @@ const Login = () => {
           break;
         case "ROLE_CUSTOMER": navigate("/")
           break;
-        case "ROLE_DELIVERY": navigate("/")
+        case "ROLE_DELIVERY": navigate("/delivery")
           break;
         default: navigate("/")
           break;

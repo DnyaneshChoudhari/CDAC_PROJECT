@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartProducts: [],
@@ -58,6 +58,16 @@ const cartSlice = createSlice({
     },
   },
 });
+
+// Selector to get product IDs and quantities
+export const selectProductIdsAndQuantities = createSelector(
+  (state) => state.cart.cartProducts,
+  (cartProducts) =>
+    cartProducts.map((product) => ({
+      productId: product.id,
+      quantity: product.quantity,
+    }))
+);
 
 export const { addProduct, deleteProduct, deleteAllProduct,clearCart } =
   cartSlice.actions;

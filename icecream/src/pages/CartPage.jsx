@@ -19,7 +19,7 @@ import {
   addProduct,
   deleteProduct,
   deleteAllProduct,
-  clearCart,
+  clearCart,selectProductIdsAndQuantities
 } from '../features/cart/CartSlice';
 import { AmountButtons } from '../styles/buttons/buttons';
 import { PageContainer } from '../styles/page/containers';
@@ -31,6 +31,7 @@ import { useAuth } from '../hooks/useAuth';
 const CartPage = () => {
   const { cartProducts } = useSelector((state) => state.cart);
   const { email, id, role } = useSelector((state) => state.user);
+  const productIdsAndQuantities = useSelector(selectProductIdsAndQuantities);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
@@ -46,7 +47,7 @@ const CartPage = () => {
   //payement handling mechanism
   const handlePayment = async (amount) => {
     try {
-      console.log(amount);
+      console.log(productIdsAndQuantities);
 
       // const response = await createPaymentOrder(amount, "INR");
       const response = await axios({
@@ -59,7 +60,7 @@ const CartPage = () => {
         },
         data: {
           customerId: id,
-          products: [{ productId: 1, quantity: 5 }]
+          products:productIdsAndQuantities
         },
         headers: {
           "Content-Type": "application/json", // Set the content type if needed
@@ -95,13 +96,7 @@ const CartPage = () => {
                 razorpaySignature: response.razorpay_signature,
                 oid: parsedId
               }
-              // data: {
-              //   parsedId
-              // },
-              // headers: {
-              //   "Content-Type": "application/json", // Set the content type if needed
-              //   "Authorization": `Bearer ${token}`, // Include a token if your API requires authentication
-              // }
+
             })
             alert('Payment successful');
             // You can update the order status or navigate to another page here
