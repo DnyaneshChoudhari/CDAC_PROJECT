@@ -40,9 +40,9 @@ public class SecurityConfig {
 		// Disable CSRF entirely
 		).authorizeHttpRequests(
 				authorize -> authorize.requestMatchers("/api/products", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
-						.requestMatchers("/authenticate", "/api/customers", "/admin").permitAll()
-						.requestMatchers("/api/payments/create-order","/api/payments/success").permitAll()
-						 .requestMatchers("/api/deliveries/**","/api/orders/**").hasAnyRole("ADMIN", "DELIVERY")
+						.requestMatchers("/authenticate", "/api/customers", "/admin","/api/orders/**","/api/deliveries/**").permitAll()
+						.requestMatchers("/api/payments/create-order","/api/payments/success","/api/deliveries/asign-delivery-person").permitAll()
+						 .requestMatchers("/api/deliveries/asign-delivery-person","/api/orders/**").hasAnyRole("ADMIN", "DELIVERY")
 						// .requestMatchers("/api/deliveries/**","/api/orders/**").permitAll()
 				            // Allow access to delivery-related APIs only to ADMIN and DELIVERY_PERSON roles
 						// Allow public access to these endpoints

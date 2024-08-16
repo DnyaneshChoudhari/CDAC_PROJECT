@@ -2,12 +2,15 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.dto.DeliveryResponse;
 import com.app.entities.Delivery;
 import com.app.entities.Order;
 
 public interface DeliveryService {
 
 	 List<Delivery> getAllDeliveries();
+	 
+	 List<DeliveryResponse>getAllByDeliveryPerson(Long deliveryPersonId);
 	 
 	 Delivery getDeliveryById(Long id);
 	 
@@ -19,7 +22,7 @@ public interface DeliveryService {
 	 
 	 String deleteDelivery(Long id);
 	 
-	 Delivery assignDeliveryPerson(Long deliveryPersonId, Long deliveryId);
+	 Delivery assignDeliveryPerson(Long deliveryPersonId, Long orderId);
 	 
 	 Boolean verifyOtp(Long orderId, String otpcode);
 }

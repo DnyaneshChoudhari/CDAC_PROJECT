@@ -2,12 +2,14 @@ package com.app.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exception.CustomException;
+import com.app.dto.DeliveryResponse;
 import com.app.entities.Bill;
 import com.app.entities.Delivery;
 import com.app.entities.Delivery_Person;
@@ -97,11 +99,18 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public Delivery assignDeliveryPerson(Long deliveryPersonId, Long deliveryId) {
-		Delivery delivery = deliveryRepository.findById(deliveryId).orElseThrow();
-		Delivery_Person delivery_Person = deliveryPersonRepository.findById(deliveryId).orElseThrow();
+	public Delivery assignDeliveryPerson(Long deliveryPersonId, Long orderId) {
+		Order order = orderRepository.findById(orderId).orElseThrow();
+		
+		System.out.println(order.getId());
+		Delivery delivery = deliveryRepository.findByOrder(order).orElseThrow();
+		
+		System.out.println(delivery.getId());
+		Delivery_Person delivery_Person = deliveryPersonRepository.findById(deliveryPersonId).orElseThrow();
+		
 		delivery.setDelivery_Person(delivery_Person);
-		return delivery;
+		System.out.println(delivery.getDelivery_Person().getName()); 
+		return deliveryRepository.save(delivery);
 	}
 
 	@Override
@@ -119,6 +128,21 @@ public class DeliveryServiceImpl implements DeliveryService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<DeliveryResponse> getAllByDeliveryPerson(Long deliveryPersonId) {
+		List<Delivery> allByDelivery_Person = deliveryRepository.findAll().stream()
+				.filter(delivery -> delivery.getDelivery_Person().getId().equals(deliveryPersonId) && delivery.getStatus().equals("Pending")).toList();
+		List<DeliveryResponse> list = allByDelivery_Person.stream().map(delivery -> {
+			DeliveryResponse response = new DeliveryResponse();
+			response.setDeliveryId(delivery.getId());
+			response.setDeliveryDate(delivery.getDate());
+			response.setOrderId(delivery.getOrder().getId());
+			response.setStatus(delivery.getStatus());
+			return response;
+		}).collect(Collectors.toList());
+		return list;
 	}
 
 }
