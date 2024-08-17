@@ -1,4 +1,59 @@
-"# ScoopsNSmiles" 
+IACSD Scoops N Smile 
+
+![](Aspose.Words.ca614da0-587a-4bad-82be-975ad819aba8.001.png) ![](Aspose.Words.ca614da0-587a-4bad-82be-975ad819aba8.002.png)
+
+**INSTITUTE FOR ADVANCED COMPUTING AND  ![ref1]  SOFTWARE DEVELOPMENT, AKURDI, PUNE** 
+
+**Scoops N Smile** 
+
+`     `**Online Icecream Shop** 
+
+PG-DAC March 2024 
+
+`          `Submitted By : 
+
+Group No : 71
+
+Roll No  Name 
+
+243143  Dnyanesh Choudhari 243198  Shailesh Kale 
+
+**Mrs. Geeta Darunte  Mr. Rohit Puranik** Project Guide  Centre Coordinator 
+
+**ABSTRACT ![ref1]**
+
+`   `The  Scoops N Smile  E-commerce  System  is  an  integrated  platform  designed  to provide  a  delightful  shopping  experience  for  ice  cream  lovers.  The  system  offers  a comprehensive solution that covers all aspects of online shopping, from flavour browsing to final delivery. Users begin by exploring a wide range of ice cream flavours and treats, with detailed descriptions and comparisons to assist in making informed choices. Once a product is selected, customers can add it to their shopping cart and proceed to checkout. The system includes a secure login and registration process, ensuring that user data is protected throughout the shopping experience. Scoops N Smile secure payment gateway supports multiple payment options, allowing users to complete transactions with ease and confidence. After payment, the system seamlessly coordinates with delivery personnel to ensure timely and accurate delivery of the purchased ice cream to the customer’s specified location. Scoops N Smile is designed to  offer  a  user-friendly,  efficient,  and  secure  shopping  experience,  making  it  easier  for customers to enjoy their favourite ice cream from the comfort of their homes. 
+
+**ACKNOWLEDGEMENT ![ref1]**
+
+I take this occasion to thank God, almighty for blessing us with his grace and taking our endeavor to a successful culmination. I extend my sincere and heartfelt thanks to our esteemed guide, Mrs. Geeta Darunte for providing me with the right guidance and advice at the crucial juncture sand for showing me the right way. I extend my sincere thanks to our respected  Centre Co-Ordinator  Mr.  Rohit  Puranik,  for  allowing  us  to  use  the  facilities available. I would like to thank the other faculty members also, at this occasion. Last but not the least, I would like to thankmy friends and family for the support and encouragement they have given me during the courseof our work. 
+
+Dnyanesh Choudhari (240341220058) 
+
+Shailesh Kale (240341220170) 
+
+**Table of Contents ![ref1]**
+
+
+
+|**Sr. No.** |**Description** |**Page No** |
+| - | - | - |
+|1 |Introduction |1 |
+|2 |SRS |4 |
+|3 |Database Design |8 |
+|4 |Appendix A |11 |
+|4\.1 |ER Diagram |11 |
+|4\.2 |Use Case Diagram |13 |
+|4\.3 |Data Flow Diagram |14 |
+|4\.4 |Activity Diagram |15 |
+|4\.5 |Class Diagram |16 |
+|4\.6 |Sequence Diagram |17 |
+|5 |Appendix B |20 |
+|6 |Conclusion |25 |
+|7 |Reference |26 |
+
+IACSD Scoops N Smile 
+
 **1. INTRODUCTION ![ref1]**
 
 In an era where convenience and efficiency are key drivers of consumer behaviour, the Scoops N Smile  E-commerce System emerges as a cutting-edge solution tailored for ice cream enthusiasts. Designed to cater to the diverse needs of customers, Scoops N Smile  offers a fully integrated platform that simplifies the entire online shopping process, from initial flavour exploration to the final delivery at the doorstep. 
